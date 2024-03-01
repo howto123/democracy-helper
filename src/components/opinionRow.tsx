@@ -1,14 +1,25 @@
 
 
 import Opinion from '@/types/opinion';
-import { TableCell, TableRow } from '@mui/material';
+import { Box, TableCell, TableRow, Typography } from '@mui/material';
 
 
 export default function OpinionRow({ opinion } : { opinion : Opinion }) {
     return (
-        <TableRow>
-            <TableCell align="right">{opinion.type}</TableCell>
-            <TableCell align="right">{opinion.text}</TableCell>
-        </TableRow>
+        <>
+            <Box sx={{
+                gridColumnStart: 1,
+                gridColumnEnd: 1,
+            }}>
+                {opinion.type}
+            </Box>
+            <Box sx={{
+                gridColumnStart: 2,
+                gridColumnEnd: -1,
+            }}>
+                {opinion.text}
+            </Box>
+        </>
+        
     );
   }

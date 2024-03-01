@@ -1,7 +1,7 @@
 "use client"
 
 import Proposition from "@/types/proposition"
-import { TableRow, TableCell, Button } from "@mui/material"
+import { TableRow, TableCell, Button, Typography, Box } from "@mui/material"
 import OpinionRow from "./opinionRow"
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
@@ -10,33 +10,55 @@ import PropositionWithOpinions from "@/types/propositionWithOpinions";
 
 
 export default function PropositionRow(
-    { proposition }: { proposition: PropositionWithOpinions}
+    {
+        proposition,
+        showDetails,
+    }: {
+        proposition: PropositionWithOpinions,
+        showDetails: boolean,
+    }
 ){
 
 
-
     return <>
-        <TableRow
-            key={proposition.id}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-        >
-            <TableCell component="th" scope="row">
-                {proposition.text}
-            </TableCell>
-            <TableCell>hugeFan</TableCell>
-            <TableCell>soundsGood</TableCell>
-            <TableCell>noOpinion</TableCell>
-            <TableCell>iDontCare</TableCell>
-            <TableCell>needsDiscussion</TableCell>
-            <TableCell>veto</TableCell>
-            <TableCell>
-                <Button variant="outlined">
-                    <PanToolOutlinedIcon />
-                </Button>
-            </TableCell>
-        </TableRow>
-        {proposition.opinions.map(o => <>
-            <OpinionRow opinion={o}></OpinionRow>
-        </>)}
+        <Box sx={{
+            gridColumnStart: 1,
+            gridColumnEnd: -1,
+            margin: '5pt',
+            padding: '2pt',
+            border: '2pt solid gray',
+            borderRadius: '5pt'
+            
+        }}>
+            <Box sx={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gridTemplateRows: 'auto',
+            }}>
+                <Box sx={{
+                    gridColumnStart: 1,
+                    gridColumnEnd: -2
+                }}>
+                    <Typography>{proposition.text}</Typography>
+                </Box>
+                <Box sx={{
+                    gridColumnStart: -1,
+                    gridColumnEnd: -1
+                }}>
+                    <Button variant="outlined">
+                        <PanToolOutlinedIcon />
+                    </Button>
+                </Box>
+                {showDetails ? 
+                <>
+                    {proposition.opinions.map(o =>
+                        <OpinionRow key={o.id} opinion={o}></OpinionRow>
+                    )}
+                </> 
+                :
+                <></>}
+            </Box>
+        </Box>
     </>
 }
+
