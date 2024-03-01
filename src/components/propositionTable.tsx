@@ -14,61 +14,73 @@ import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import { Button, FormControlLabel } from '@mui/material';
 import Opinion from '@/types/opinion';
 import Proposition from '@/types/proposition';
+import OpinionRow from './opinionRow';
+import PropositionRow from './propositionRow';
+import PropositionWithOpinions from '@/types/propositionWithOpinions';
 
 
 
+export default function PropositionTable(
+    { propositions, opinions }: { propositions: Proposition[], opinions: Opinion[] }
+    ) {
+    const propositionsWithOpinions = getPropositionsWithOpinions(propositions, opinions);
 
-export default function PropositionTable({ propositions, opinions }:{ propositions: Proposition[], opinions: Opinion[]}) {
-  const showDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Switch changed!")
-  }
 
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Proposition</TableCell>
-            <TableCell>Huge fan</TableCell>
-            <TableCell>Sounds good</TableCell>
-            <TableCell>No opinoin</TableCell>
-            <TableCell>Veto against</TableCell>
-            <TableCell>Needs discussion</TableCell>
-            <TableCell></TableCell>
-            <TableCell>
-              <FormControlLabel
-                value="show details"
-                control={<Switch color="primary" onChange={showDetailsChange}/>}
-                label="details"
-                labelPlacement="top"
-              />
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {propositions.map((p) => (
-            <TableRow
-              key={p.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {p.text}
-              </TableCell>
-              <TableCell>hugeFan</TableCell>
-              <TableCell>soundsGood</TableCell>
-              <TableCell>noOpinion</TableCell>
-              <TableCell>iDontCare</TableCell>
-              <TableCell>needsDiscussion</TableCell>
-              <TableCell>veto</TableCell>
-              <TableCell>
-                <Button variant="outlined">
-                  <PanToolOutlinedIcon/>
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+    const showDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("Switch changed!")
+    }
+
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Proposition</TableCell>
+                        <TableCell>Huge fan</TableCell>
+                        <TableCell>Sounds good</TableCell>
+                        <TableCell>No opinoin</TableCell>
+                        <TableCell>I don't care</TableCell>
+                        <TableCell>Needs discussion</TableCell>
+                        <TableCell>Veto against</TableCell>
+                        <TableCell>
+                            <FormControlLabel
+                                value="show details"
+                                control={
+                                    <Switch
+                                        color="primary"
+                                        onChange={showDetailsChange}
+                                    />}
+                                label="details"
+                                labelPlacement="top"
+                            />
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {propositionsWithOpinions.map( p => (
+                        <PropositionRow key={p.id} proposition={p}></PropositionRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+}
+
+
+function getPropositionsWithOpinions(
+    propositions: Proposition[],
+    opinions: Opinion[]
+): PropositionWithOpinions[] {
+    return propositions.map( p => {
+
+        const matchingOpinions = opinions.filter(
+            o => p.opinionIds.includes(o.id)
+        )
+
+        return {
+            id: p.id,
+            text: p.text,
+            opinions: matchingOpinions
+        }
+    })
 }

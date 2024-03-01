@@ -1,9 +1,10 @@
+import { Identity } from "./identity";
 import { OpinionType } from "./opinionType";
 
 
 
 export default interface Opinion {
-    id: number,
+    id: Identity,
     type: OpinionType,
     text: string
 }

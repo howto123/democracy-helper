@@ -2,7 +2,7 @@
     {
         "id": 1,
         "text": "I suggest to make an app that makes democratic group decisions easier.",
-        "opinions": [
+        "opinionIds": [
             1,
             2,
             3,
@@ -12,7 +12,7 @@
     {
         "id": 2,
         "text": "Let's have shorter plannaries.",
-        "opinions": [
+        "opinionIds": [
             5,
             6
         ]
@@ -20,7 +20,7 @@
     {
         "id": 3,
         "text": "Should we meet once every other week?",
-        "opinions": [
+        "opinionIds": [
             7,
             8,
             9
@@ -29,13 +29,13 @@
     {
         "id": 4,
         "text": "Should we meet once per month?",
-        "opinions": [
+        "opinionIds": [
         ]
     },
     {
         "id": 5,
         "text": "Beers and pizza on Saturday?!",
-        "opinions": [
+        "opinionIds": [
             10
         ]
     }
