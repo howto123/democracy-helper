@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "text": "I suggest to make an app that makes democratic group decisions easier.",
+        "opinions": [
+            1,
+            2,
+            3,
+            4
+        ]
+    },
+    {
+        "id": 2,
+        "text": "Let's have shorter plannaries.",
+        "opinions": [
+            5,
+            6
+        ]
+    },
+    {
+        "id": 3,
+        "text": "Should we meet once every other week?",
+        "opinions": [
+            7,
+            8,
+            9
+        ]
+    },
+    {
+        "id": 4,
+        "text": "Should we meet once per month?",
+        "opinions": [
+        ]
+    },
+    {
+        "id": 5,
+        "text": "Beers and pizza on Saturday?!",
+        "opinions": [
+            10
+        ]
+    }
+]

@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "type": "HugeFan",
+        "text": "Good idea!"
+    },
+    {
+        "id": 2,
+        "type": "SoundsGood",
+        "text": "Agreed!"
+    },
+    {
+        "id": 3,
+        "type": "HugeFan",
+        "text": "We could do this twice..."
+    },
+    {
+        "id": 4,
+        "type": "IDontCare",
+        "text": ""
+    },
+    {
+        "id": 5,
+        "type": "HugeFan",
+        "text": ""
+    },
+    {
+        "id": 6,
+        "type": "HugeFan",
+        "text": "Looking forward to that!"
+    },
+    {
+        "id": 7,
+        "type": "IDontCare",
+        "text": "No time to think about that."
+    },
+    {
+        "id": 8,
+        "type": "HugeFan",
+        "text": ""
+    },
+    {
+        "id": 9,
+        "type": "HugeFan",
+        "text": ""
+    },
+    {
+        "id": 10,
+        "type": "IDontCare",
+        "text": ""
+    },
+    {
+        "id": 11,
+        "type": "Veto",
+        "text": "That does not correpond to our values"
+    },
+    {
+        "id": 12,
+        "type": "NeedsDiscussion",
+        "text": "We need to consider this and that."
+    },
+    {
+        "id": 13,
+        "type": "HugeFan",
+        "text": "I like it!"
+    },
+    {
+        "id": 14,
+        "type": "SoundsGood",
+        "text": "Cool"
+    },
+    {
+        "id": 15,
+        "type": "NeedsDiscussion",
+        "text": ""
+    },
+    {
+        "id": 16,
+        "type": "HugeFan",
+        "text": ""
+    }
+]
