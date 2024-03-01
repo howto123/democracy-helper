@@ -40,11 +40,10 @@ export default function PropositionOverview(
                 gridColumnStart: 1,
                 gridColumnEnd: -1
             }}>
-                
+                {propositionsWithOpinions.map( p => (
+                    <PropositionRow key={p.id} proposition={p} showDetails={showDetails}></PropositionRow>
+                ))}
             </Box>
-            {propositionsWithOpinions.map( p => (
-                <PropositionRow key={p.id} proposition={p} showDetails={showDetails}></PropositionRow>
-            ))}
         </Box>
     );
 }

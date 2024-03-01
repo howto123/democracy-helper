@@ -49,15 +49,22 @@ export default function PropositionRow(
                         <PanToolOutlinedIcon />
                     </Button>
                 </Box>
-                {showDetails ? 
-                <>
-                    {proposition.opinions.map(o =>
-                        <OpinionRow key={o.id} opinion={o}></OpinionRow>
-                    )}
-                </> 
-                :
-                <></>}
             </Box>
+            {showDetails ? 
+                <Box sx={{
+                    gridColumnStart: -1,
+                    gridColumnEnd: -1,
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(10, 1fr)',
+                    gridTemplateRows: 'auto',
+
+                }}>
+                    {proposition.opinions.map(o =>
+                        <OpinionRow key={o.id} opinion={o} />
+                    )}
+                </Box> 
+                :
+            <></>}
         </Box>
     </>
 }

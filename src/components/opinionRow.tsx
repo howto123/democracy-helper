@@ -6,7 +6,16 @@ import { Box, TableCell, TableRow, Typography } from '@mui/material';
 
 export default function OpinionRow({ opinion } : { opinion : Opinion }) {
     return (
-        <>
+        <Box
+            sx={{
+                gridColumnStart: 1,
+                gridColumnEnd: -1,
+                padding: '1pt',
+                margin: '2pt',
+                border: '1px solid black',
+                borderRadius: '5pt',
+            }}
+        >
             <Box sx={{
                 gridColumnStart: 1,
                 gridColumnEnd: 1,
@@ -19,7 +28,6 @@ export default function OpinionRow({ opinion } : { opinion : Opinion }) {
             }}>
                 {opinion.text}
             </Box>
-        </>
-        
+        </Box>        
     );
   }
