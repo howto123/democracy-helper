@@ -2,7 +2,7 @@
 
 import styles from './page.module.css'
 import BasicTable from '@/components/propositionOverview'
-import { Box, Button, FormControlLabel, Stack, Switch, Typography } from '@mui/material'
+import { Box, Button, ButtonGroup, Divider, FormControlLabel, Paper, Stack, Switch, Typography } from '@mui/material'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -40,35 +40,48 @@ export default function Home() {
 
     return (
         <main className={styles.main}>
-            <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
-                Welcome to DemocracyHelper
-            </Typography>
-            <Box width='100%'>
+            <Paper sx={{
+                height: '100vh'
+            }}>
+                <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
+                    Welcome to DemocracyHelper
+                </Typography>
+
                 <Stack
-                    spacing={{ xs: 1, sm: 2 }}
-                    direction='row'
-                    useFlexGap
-                    justifyContent='space-around'
-                    alignItems='stretch'
-                    flexWrap='wrap'
+                    divider={<Divider orientation="vertical" />}
+                    spacing={2}
+                    aria-label='proposition-overview'
                 >
-                    <div>
-                        <Button variant='outlined'><InfoOutlinedIcon /></Button>
-                    </div>
-                    <div>
-                        <Button variant='outlined'><AddCircleOutlineOutlinedIcon /></Button>
-                        <Button variant='outlined' disabled><DeleteOutlineOutlinedIcon /></Button>
-                        <Button variant='outlined' onClick={handleDetailsClick}>
-                            {thisState.showDetails ? 'hide details' : 'show details'}
-                        </Button>
-                    </div>
+                    <Box display='flex' flexDirection='row' justifyContent='center'>
+                        <Stack
+                            spacing={{ xs: 1, sm: 2 }}
+                            direction='row'
+                            flexWrap='wrap'
+                            aria-label='proposition-general-controls'
+                        >
+                            <Button variant='outlined'><InfoOutlinedIcon /></Button>
+                            <ButtonGroup variant='outlined'>
+                                <Button >
+                                    <AddCircleOutlineOutlinedIcon />
+                                </Button>
+                                <Button disabled>
+                                    <DeleteOutlineOutlinedIcon />
+                                </Button>
+                            </ButtonGroup>
+                            <Button onClick={handleDetailsClick} variant='outlined' >
+                                {thisState.showDetails ? 'hide details' : 'show details'}
+                            </Button>
+                        </Stack>
+                    </Box>
+
+                    <PropositionOverview
+                        propositions={propositions}
+                        opinions={opinions}
+                        showDetails={thisState.showDetails}
+                        aria-label='proposition-display'
+                    />
                 </Stack>
-            </Box>
-            <PropositionOverview
-                propositions={propositions}
-                opinions={opinions}
-                showDetails={thisState.showDetails}
-            />
+            </Paper>
         </main>
     )
 }
