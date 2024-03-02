@@ -41,11 +41,14 @@ export default function Home() {
     return (
         <main className={styles.main}>
             <Paper sx={{
-                height: '100vh'
+                height: '100vh',
             }}>
-                <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
-                    Welcome to DemocracyHelper
-                </Typography>
+                <Box m='5pt'>
+                    <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
+                        Welcome to DemocracyHelper
+                    </Typography>
+                </Box>
+
 
                 <Stack
                     divider={<Divider orientation="vertical" />}

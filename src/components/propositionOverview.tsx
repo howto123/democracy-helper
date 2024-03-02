@@ -6,21 +6,23 @@ import Switch from '@mui/material/Switch';
 import { Box, FormControlLabel } from '@mui/material';
 import Opinion from '@/types/opinion';
 import Proposition from '@/types/proposition';
-import PropositionRow from './propositionRow';
+import PropositionRow from './propositionItem';
 import PropositionWithOpinions from '@/types/propositionWithOpinions';
+import PropositionLabel from './propositionLabel';
+import PropositionItem from './propositionItem';
 
 
 
 export default function PropositionOverview(
-        {
-            propositions,
-            opinions,
-            showDetails }: {
-                propositions: Proposition[],
-                opinions: Opinion[],
-                showDetails: boolean
-            }
-    ) {
+    {
+        propositions,
+        opinions,
+        showDetails }: {
+            propositions: Proposition[],
+            opinions: Opinion[],
+            showDetails: boolean
+        }
+) {
     const propositionsWithOpinions = getPropositionsWithOpinions(propositions, opinions);
 
 
@@ -29,21 +31,13 @@ export default function PropositionOverview(
             sx={{
                 width: '100%',
                 minWidth: 650,
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: 1,
-                gridTemplateRows: 'auto',
             }}
             aria-label="proposition-list"
         >
-            <Box sx={{
-                gridColumnStart: 1,
-                gridColumnEnd: -1
-            }}>
-                {propositionsWithOpinions.map( p => (
-                    <PropositionRow key={p.id} proposition={p} showDetails={showDetails}></PropositionRow>
-                ))}
-            </Box>
+            <PropositionLabel />
+            {propositionsWithOpinions.map(p => (
+                <PropositionItem key={p.id} proposition={p} showDetails={showDetails} />
+            ))}
         </Box>
     );
 }
@@ -53,7 +47,7 @@ function getPropositionsWithOpinions(
     propositions: Proposition[],
     opinions: Opinion[]
 ): PropositionWithOpinions[] {
-    return propositions.map( p => {
+    return propositions.map(p => {
 
         const matchingOpinions = opinions.filter(
             o => p.opinionIds.includes(o.id)
