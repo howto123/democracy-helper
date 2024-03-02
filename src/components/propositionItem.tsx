@@ -24,39 +24,39 @@ export default function PropositionItem(
 
 
     return <>
-        <Box sx={{...propositionBorderStyles, ...grid12SlotsStyles}}>
+        <Box sx={{ ...propositionBorderStyles, ...grid12SlotsStyles }}>
+            <Box sx={{
+                gridColumnStart: 1,
+                gridColumnEnd: 7,
+            }}>
+                <Typography>{proposition.text}</Typography>
+            </Box>
+
+            <Box sx={{
+                gridColumnStart: -1,
+                gridColumnEnd: -1,
+            }}>
+                <Button variant="outlined">
+                    <PanToolOutlinedIcon />
+                </Button>
+            </Box>
+
+            {showDetails ?
                 <Box sx={{
                     gridColumnStart: 1,
-                    gridColumnEnd: 7,
+                    gridColumnEnd: 13,
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gridTemplateRows: 'auto',
+
                 }}>
-                    <Typography>{proposition.text}</Typography>
+                    {proposition.opinions.map(o =>
+                        <OpinionRow key={o.id} opinion={o} />
+                    )}
                 </Box>
-
-                <Box sx={{
-                    gridColumnStart: -1,
-                    gridColumnEnd: -1,
-                }}>
-                    <Button variant="outlined">
-                        <PanToolOutlinedIcon />
-                    </Button>
-                </Box>
-
-                {showDetails ?
-                    <Box sx={{
-                        gridColumnStart: 1,
-                        gridColumnEnd: 13,
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(3, 1fr)',
-                        gridTemplateRows: 'auto',
-
-                    }}>
-                        {proposition.opinions.map(o =>
-                            <OpinionRow key={o.id} opinion={o} />
-                        )}
-                    </Box>
-                    :
-                    <></>}
-            </Box>
+                :
+                <></>}
+        </Box>
 
     </>
 }
