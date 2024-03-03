@@ -23,8 +23,9 @@ export default function PropositionItem({
             <Box sx={{
                 gridColumnStart: 1,
                 gridColumnEnd: 7,
-                display: 'inline',
-                verticalAlign: 'bottom'
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'end'
             }}>
                 <Typography display='inline'>Proposition</Typography>
             </Box>

@@ -71,7 +71,7 @@ export default function Home() {
                                     <DeleteOutlineOutlinedIcon />
                                 </Button>
                             </ButtonGroup>
-                            <Button onClick={handleDetailsClick} variant='outlined' >
+                            <Button onClick={handleDetailsClick} variant='outlined' sx={{width: '120pt'}}>
                                 {thisState.showDetails ? 'hide details' : 'show details'}
                             </Button>
                         </Stack>
