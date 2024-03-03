@@ -1,15 +1,14 @@
 "use client"
 
 import * as React from 'react';
-import Switch from '@mui/material/Switch';
-
-import { Box, FormControlLabel } from '@mui/material';
+import { Box } from '@mui/material';
 import Opinion from '@/types/opinion';
 import Proposition from '@/types/proposition';
-import PropositionRow from './propositionItem';
 import PropositionWithOpinions from '@/types/propositionWithOpinions';
 import PropositionLabel from './propositionLabel';
 import PropositionItem from './propositionItem';
+import { OpinionSum, OpinionType } from '@/types/opinionType';
+import getPropositionsWithOpinions from '@/helperFunctions/getPropositionsWithOpinions';
 
 
 
@@ -25,7 +24,6 @@ export default function PropositionOverview(
 ) {
     const propositionsWithOpinions = getPropositionsWithOpinions(propositions, opinions);
 
-
     return (
         <Box
             sx={{
@@ -34,29 +32,10 @@ export default function PropositionOverview(
             }}
             aria-label="proposition-list"
         >
-            <PropositionLabel showDetails={showDetails}/>
+            <PropositionLabel showDetails={showDetails} />
             {propositionsWithOpinions.map(p => (
                 <PropositionItem key={p.id} proposition={p} showDetails={showDetails} />
             ))}
         </Box>
     );
-}
-
-
-function getPropositionsWithOpinions(
-    propositions: Proposition[],
-    opinions: Opinion[]
-): PropositionWithOpinions[] {
-    return propositions.map(p => {
-
-        const matchingOpinions = opinions.filter(
-            o => p.opinionIds.includes(o.id)
-        )
-
-        return {
-            id: p.id,
-            text: p.text,
-            opinions: matchingOpinions
-        }
-    })
 }

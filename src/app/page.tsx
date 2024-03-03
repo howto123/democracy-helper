@@ -1,7 +1,5 @@
 "use client"
 
-import styles from './page.module.css'
-import BasicTable from '@/components/propositionOverview'
 import { Box, Button, ButtonGroup, Divider, FormControlLabel, Paper, Stack, Switch, Typography } from '@mui/material'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -39,52 +37,48 @@ export default function Home() {
     }
 
     return (
-        <main className={styles.main}>
-            <Paper sx={{
-                height: '100vh',
-            }}>
-                <Box m='5pt'>
-                    <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
-                        Welcome to DemocracyHelper
-                    </Typography>
+        <main>
+            <Box m='5pt'>
+                <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
+                    Welcome to DemocracyHelper
+                </Typography>
+            </Box>
+
+
+            <Stack
+                divider={<Divider orientation="vertical" />}
+                spacing={2}
+                aria-label='proposition-overview'
+            >
+                <Box display='flex' flexDirection='row' justifyContent='center'>
+                    <Stack
+                        spacing={{ xs: 1, sm: 2 }}
+                        direction='row'
+                        flexWrap='wrap'
+                        aria-label='proposition-general-controls'
+                    >
+                        <Button variant='outlined'><InfoOutlinedIcon /></Button>
+                        <ButtonGroup variant='outlined'>
+                            <Button >
+                                <AddCircleOutlineOutlinedIcon />
+                            </Button>
+                            <Button disabled>
+                                <DeleteOutlineOutlinedIcon />
+                            </Button>
+                        </ButtonGroup>
+                        <Button onClick={handleDetailsClick} variant='outlined' sx={{ width: '120pt' }}>
+                            {thisState.showDetails ? 'hide details' : 'show details'}
+                        </Button>
+                    </Stack>
                 </Box>
 
-
-                <Stack
-                    divider={<Divider orientation="vertical" />}
-                    spacing={2}
-                    aria-label='proposition-overview'
-                >
-                    <Box display='flex' flexDirection='row' justifyContent='center'>
-                        <Stack
-                            spacing={{ xs: 1, sm: 2 }}
-                            direction='row'
-                            flexWrap='wrap'
-                            aria-label='proposition-general-controls'
-                        >
-                            <Button variant='outlined'><InfoOutlinedIcon /></Button>
-                            <ButtonGroup variant='outlined'>
-                                <Button >
-                                    <AddCircleOutlineOutlinedIcon />
-                                </Button>
-                                <Button disabled>
-                                    <DeleteOutlineOutlinedIcon />
-                                </Button>
-                            </ButtonGroup>
-                            <Button onClick={handleDetailsClick} variant='outlined' sx={{width: '120pt'}}>
-                                {thisState.showDetails ? 'hide details' : 'show details'}
-                            </Button>
-                        </Stack>
-                    </Box>
-
-                    <PropositionOverview
-                        propositions={propositions}
-                        opinions={opinions}
-                        showDetails={thisState.showDetails}
-                        aria-label='proposition-display'
-                    />
-                </Stack>
-            </Paper>
+                <PropositionOverview
+                    propositions={propositions}
+                    opinions={opinions}
+                    showDetails={thisState.showDetails}
+                    aria-label='proposition-display'
+                />
+            </Stack>
         </main>
     )
 }

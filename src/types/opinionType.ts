@@ -9,3 +9,12 @@ export enum OpinionType {
     Veto = "No, we can't do that",
     NeedsDiscussion = "Too complex to handle online",
 }
+
+export type OpinionSum = {
+    hugeFan: number,
+    soundsGood: number,
+    iDontCare: number,
+    againstButNoVeto: number,
+    veto: number,
+    needsDiscussion: number
+}

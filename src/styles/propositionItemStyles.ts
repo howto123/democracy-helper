@@ -11,7 +11,7 @@ export const propositionBorderStyles = {
 export const propositionBorderNoneStyles = {
     margin: '5pt',
     padding: '2pt',
-    border: 'none',
+    border: '2pt solid rgba(0,0,0,0);',
     borderRadius: '5pt'
 }
 
