@@ -34,8 +34,10 @@ function getOpinionSum(opinions: Opinion[]): OpinionSum {
         veto: 0,
         needsDiscussion: 0,
     }
+
+
     opinions.forEach( o => {
-        switch( o.type ) {
+        switch(o.type) {
             case OpinionType.HugeFan: {
                 toBeReturned.hugeFan++;
                 break;

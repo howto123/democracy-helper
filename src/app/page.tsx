@@ -9,12 +9,9 @@ import Proposition from '@/types/proposition';
 import PropositionOverview from '@/components/propositionOverview';
 import { MouseEventHandler, useState } from 'react';
 
-
 type ThisState = {
     showDetails: boolean,
 }
-
-
 
 export default function Home() {
     const propositions = require("../data/propositions.json") as Proposition[];
@@ -23,9 +20,6 @@ export default function Home() {
     const [thisState, thisStateSet] = useState<ThisState>({
         showDetails: false,
     });
-
-    const [myBool, myBoolSet] = useState<string>('lalala');
-
 
     const handleDetailsClick: MouseEventHandler<HTMLButtonElement> = (e) => {
         thisStateSet(old => {
@@ -78,7 +72,7 @@ export default function Home() {
                     showDetails={thisState.showDetails}
                     aria-label='proposition-display'
                 />
-            </Stack>
+            </Stack>            
         </main>
     )
 }

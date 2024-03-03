@@ -7,6 +7,7 @@ import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import { grid12SlotsStyles, propositionBorderStyles } from "@/styles/propositionItemStyles";
 import { Boy } from "@mui/icons-material";
+import { MouseEventHandler, useState } from "react";
 
 
 
@@ -20,17 +21,15 @@ export default function PropositionItem(
         showDetails: boolean,
     }
 ) {
-
+    const [showsOpinions, showsOpinionsSet] = useState(false)
+    const clickEventHandler: MouseEventHandler<HTMLDivElement> = () => showsOpinionsSet(o => !o)
 
 
     return <>
-        <Box sx={{ ...propositionBorderStyles, ...grid12SlotsStyles }}>
+        <Box sx={{ ...propositionBorderStyles, ...grid12SlotsStyles }} onClick={clickEventHandler}>
             <Box sx={{
                 gridColumnStart: 1,
                 gridColumnEnd: 7,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'end'
             }}>
                 <Typography>{proposition.text}</Typography>
             </Box>
@@ -76,6 +75,21 @@ export default function PropositionItem(
                     <PanToolOutlinedIcon />
                 </Button>
             </Box>
+
+            {showsOpinions ?
+                <Box sx={{
+                    gridColumnStart: 1,
+                    gridColumnEnd: -1,
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(4, 1fr)',
+                    gridTemplateRows: 'auto',
+                }}>
+                    {proposition.opinions.map(o =>
+                        <OpinionRow key={o.id} opinion={o}></OpinionRow>
+                    )}
+                </Box>
+                : <></>
+            }
         </Box>
     </>
 }

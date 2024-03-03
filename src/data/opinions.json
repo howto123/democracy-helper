@@ -1,82 +1,82 @@
 [
     {
         "id": 1,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": "Good idea!"
     },
     {
         "id": 2,
-        "type": "SoundsGood",
+        "type": "Sound good to me",
         "text": "Agreed!"
     },
     {
         "id": 3,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": "We could do this twice..."
     },
     {
         "id": 4,
-        "type": "IDontCare",
+        "type": "I don't have time to think about it",
         "text": ""
     },
     {
         "id": 5,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": ""
     },
     {
         "id": 6,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": "Looking forward to that!"
     },
     {
         "id": 7,
-        "type": "IDontCare",
+        "type": "I don't have time to think about it",
         "text": "No time to think about that."
     },
     {
         "id": 8,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": ""
     },
     {
         "id": 9,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": ""
     },
     {
         "id": 10,
-        "type": "IDontCare",
+        "type": "I don't have time to think about it",
         "text": ""
     },
     {
         "id": 11,
-        "type": "Veto",
+        "type": "No, we can't do that",
         "text": "That does not correpond to our values"
     },
     {
         "id": 12,
-        "type": "NeedsDiscussion",
+        "type": "Too complex to handle online",
         "text": "We need to consider this and that."
     },
     {
         "id": 13,
-        "type": "HugeFan",
+        "type": "I'm a huge fan!",
         "text": "I like it!"
     },
     {
         "id": 14,
-        "type": "SoundsGood",
+        "type": "Sound good to me",
         "text": "Cool"
     },
     {
         "id": 15,
-        "type": "NeedsDiscussion",
+        "type": "Too complex to handle online",
         "text": ""
     },
     {
         "id": 16,
-        "type": "HugeFan",
+        "type": "I would prefer a differernt solution",
         "text": ""
     }
 ]
