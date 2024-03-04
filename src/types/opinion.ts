@@ -6,5 +6,6 @@ import { OpinionType } from "./opinionType";
 export default interface Opinion {
     id: Identity,
     type: OpinionType,
-    text: string
+    text: string,
+    propositionId: Identity,
 }

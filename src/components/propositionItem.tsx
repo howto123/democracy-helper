@@ -8,6 +8,7 @@ import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import { grid12SlotsStyles, propositionBorderStyles } from "@/styles/propositionItemStyles";
 import { Boy } from "@mui/icons-material";
 import { MouseEventHandler, useState } from "react";
+import AddOpinionDialog from "./addOpinionDialog";
 
 
 
@@ -71,9 +72,7 @@ export default function PropositionItem(
                 display: 'flex',
                 justifyContent: 'center',
             }}>
-                <Button variant="outlined">
-                    <PanToolOutlinedIcon />
-                </Button>
+                <AddOpinionDialog propositionId={proposition.id} />
             </Box>
 
             {showsOpinions ?

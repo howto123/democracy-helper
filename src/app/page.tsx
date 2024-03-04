@@ -8,6 +8,7 @@ import Opinion from '@/types/opinion';
 import Proposition from '@/types/proposition';
 import PropositionOverview from '@/components/propositionOverview';
 import { MouseEventHandler, useState } from 'react';
+import AddPropositionDialog from '@/components/addPropositionDialog';
 
 type ThisState = {
     showDetails: boolean,
@@ -53,9 +54,7 @@ export default function Home() {
                     >
                         <Button variant='outlined'><InfoOutlinedIcon /></Button>
                         <ButtonGroup variant='outlined'>
-                            <Button >
-                                <AddCircleOutlineOutlinedIcon />
-                            </Button>
+                            <AddPropositionDialog />
                             <Button disabled>
                                 <DeleteOutlineOutlinedIcon />
                             </Button>

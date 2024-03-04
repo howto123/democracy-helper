@@ -1,1 +1,1 @@
-export type Identity = number;
+export type Identity = string;

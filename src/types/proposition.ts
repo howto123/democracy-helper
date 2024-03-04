@@ -1,7 +1,6 @@
 import { Identity } from "./identity";
 
 export default interface Proposition {
-    id: string,
+    id: Identity,
     text: string,
-    opinionIds: Identity[],
 }

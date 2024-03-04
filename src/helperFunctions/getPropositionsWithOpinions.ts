@@ -11,7 +11,7 @@ export default function getPropositionsWithOpinions(
     return propositions.map(p => {
 
         const matchingOpinions = opinions.filter(
-            o => p.opinionIds.includes(o.id)
+            o => p.id === o.propositionId
         )
 
         const opinionSum = getOpinionSum(matchingOpinions)
