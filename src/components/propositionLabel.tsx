@@ -2,7 +2,7 @@
 
 import Proposition from "@/types/proposition"
 import { TableRow, TableCell, Button, Typography, Box, Stack } from "@mui/material"
-import OpinionRow from "./opinionRow"
+import OpinionRow from "./opinionItem"
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import { grid12SlotsStyles, propositionBorderNoneStyles } from "@/styles/propositionItemStyles";

@@ -1,14 +1,12 @@
 "use client"
 
-import Proposition from "@/types/proposition"
-import { TableRow, TableCell, Button, Typography, Box, Grid } from "@mui/material"
-import OpinionRow from "./opinionRow"
-import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
+import { Typography, Box } from "@mui/material"
+import OpinionItem from "./opinionItem"
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import { grid12SlotsStyles, propositionBorderStyles } from "@/styles/propositionItemStyles";
-import { Boy } from "@mui/icons-material";
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
 import AddOpinionDialog from "./addOpinionDialog";
+import Context from "@/app/context";
 
 
 
@@ -22,12 +20,22 @@ export default function PropositionItem(
         showDetails: boolean,
     }
 ) {
+    const { activeElementId, activeElementType, setPropositionToActiveElement } = useContext(Context)
     const [showsOpinions, showsOpinionsSet] = useState(false)
-    const clickEventHandler: MouseEventHandler<HTMLDivElement> = () => showsOpinionsSet(o => !o)
-
+    const clickEventHandler: MouseEventHandler<HTMLDivElement> = e => {
+        e.stopPropagation()
+        showsOpinionsSet(o => !o)
+        setPropositionToActiveElement(proposition.id)
+    }
+    const isActiveElement = () => proposition.id === activeElementId && activeElementType === 'proposition'
+    
 
     return <>
-        <Box sx={{ ...propositionBorderStyles, ...grid12SlotsStyles }} onClick={clickEventHandler}>
+        <Box
+            sx={{ ...propositionBorderStyles, ...grid12SlotsStyles }}
+            onClick={clickEventHandler}
+            className={isActiveElement() ? 'active-element' : 'passive-element'}
+        >
             <Box sx={{
                 gridColumnStart: 1,
                 gridColumnEnd: 7,
@@ -76,7 +84,7 @@ export default function PropositionItem(
             </Box>
 
             {showsOpinions ?
-                <Box sx={{
+                <Box onClick={ e => e.stopPropagation() } sx={{
                     gridColumnStart: 1,
                     gridColumnEnd: -1,
                     display: 'grid',
@@ -84,7 +92,7 @@ export default function PropositionItem(
                     gridTemplateRows: 'auto',
                 }}>
                     {proposition.opinions.map(o =>
-                        <OpinionRow key={o.id} opinion={o}></OpinionRow>
+                        <OpinionItem key={o.id} opinion={o}></OpinionItem>
                     )}
                 </Box>
                 : <></>

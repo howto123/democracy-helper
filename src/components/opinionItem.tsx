@@ -1,16 +1,20 @@
 
 
+import Context from '@/app/context';
 import Opinion from '@/types/opinion';
-import { Box, TableCell, TableRow, Typography } from '@mui/material';
-import { MouseEventHandler } from 'react';
+import { Box } from '@mui/material';
+import { MouseEventHandler, useContext } from 'react';
 
 
-export default function OpinionRow({ opinion } : { opinion : Opinion }) {
+export default function OpinionItem({ opinion } : { opinion : Opinion }) {
     const clickEventHandler: MouseEventHandler<HTMLDivElement> = (e) => {
-        e.stopPropagation()
         console.log(opinion)
+        setOpinionToActiveElement(opinion.id)
     }
 
+    const { activeElementId, activeElementType, setOpinionToActiveElement } = useContext(Context)
+
+    const isActiveElement = () => opinion.id === activeElementId && activeElementType === 'opinion'
     
     return (
         <Box
@@ -24,6 +28,7 @@ export default function OpinionRow({ opinion } : { opinion : Opinion }) {
                 border: '1px solid black',
                 borderRadius: '5pt',
             }}
+            className={isActiveElement() ? 'active-element' : 'passive-element'}
         >
             <Box sx={{
                 gridColumn: '1/2',

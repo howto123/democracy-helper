@@ -1,0 +1,14 @@
+:root {
+    --activeColor: silver;
+    --passiveColor: white;
+  }
+  
+
+
+.active-element {
+    background-color: var(--activeColor);
+}
+
+.passive-element {
+    background-color: var(--passiveColor);
+}
