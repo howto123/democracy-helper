@@ -4,26 +4,24 @@ import * as React from 'react';
 import { Box } from '@mui/material';
 import Opinion from '@/types/opinion';
 import Proposition from '@/types/proposition';
-import PropositionWithOpinions from '@/types/propositionWithOpinions';
 import PropositionLabel from './propositionLabel';
 import PropositionItem from './propositionItem';
 import { OpinionSum, OpinionType } from '@/types/opinionType';
 import getPropositionsWithOpinions from '@/helperFunctions/getPropositionsWithOpinions';
+import { useEffect, useState } from 'react';
+import PropositionWithOpinions from '@/types/propositionWithOpinions';
+
 
 
 
 export default function PropositionOverview(
     {
-        propositions,
-        opinions,
+        propositionsWithOpinions,
         showDetails }: {
-            propositions: Proposition[],
-            opinions: Opinion[],
+            propositionsWithOpinions: PropositionWithOpinions[],
             showDetails: boolean
         }
 ) {
-    const propositionsWithOpinions = getPropositionsWithOpinions(propositions, opinions);
-
     return (
         <Box
             sx={{
@@ -33,7 +31,7 @@ export default function PropositionOverview(
             aria-label="proposition-list"
         >
             <PropositionLabel showDetails={showDetails} />
-            {(propositionsWithOpinions.length>0) && propositionsWithOpinions.map(p => (
+            {propositionsWithOpinions.map(p => (
                 <PropositionItem key={p.id} proposition={p} showDetails={showDetails} />
             ))}
         </Box>

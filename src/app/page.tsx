@@ -5,13 +5,20 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Opinion from '@/types/opinion';
 import Proposition from '@/types/proposition';
 import PropositionOverview from '@/components/propositionOverview';
-import { MouseEventHandler, useEffect, useState } from 'react';
+import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { Identity } from '@/types/identity';
 import Context from './context';
 import ActiveElement from '@/types/activeElement';
 import DeleteItemDialog from '@/components/deleteItemDialog';
-import { getPropositions, getOpinions } from '@/helperFunctions/nextApiCalls';
 import AddPropositionDialog from '@/components/addPropositionDialog';
+import { opinionsSample } from '@/data/opinionsSample';
+import { propositionsSample } from '@/data/propositionsSample';
+import PropositionWithOpinions from '@/types/propositionWithOpinions';
+import getPropositionsWithOpinions from '@/helperFunctions/getPropositionsWithOpinions';
+import assert from 'assert';
+import { getPropositions, getOpinions } from '@/helperFunctions/nextApiCalls';
+
+
 
 type PartialState = {
     showDetails: boolean,
@@ -19,9 +26,10 @@ type PartialState = {
     activeElementType: ActiveElement,
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function Home() {
-    const [propositions, propositionsSet] = useState<Proposition[]>([])
-    const [opinions, opinionsSet] = useState<Opinion[]>([])
+    const [propositionsWithOpinions, propositionsWithOpinionsSet] = useState<PropositionWithOpinions[]>([]);
 
     const [partialState, partialStateSet] = useState<PartialState>({
         showDetails: false,
@@ -31,13 +39,16 @@ export default function Home() {
 
     // executes at page load
     useEffect(() => {
-        (async () => {
-            propositionsSet(await getPropositions());
-            opinionsSet(await getOpinions());
-        })()
+        const todo = async () => {
+            const propositions = await getPropositions();
+            const opinions = await getOpinions();
+            propositionsWithOpinionsSet(getPropositionsWithOpinions(propositions, opinions))
+        };
+        todo();
     }, []);
 
     const handleDetailsClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.stopPropagation();
         partialStateSet(old => {
             return {
                 ...old,
@@ -62,15 +73,6 @@ export default function Home() {
         })
     }
 
-    const [loading, loadingSet] = useState(true);
-    useEffect(()=>{
-        loadingSet(!!propositions && !!opinions);
-    }, [opinions, propositions])
-
-    useEffect(()=>{
-        console.log("loading: " + loading)
-    }, [loading])
-
     return (
         <main>
             <Box
@@ -88,12 +90,7 @@ export default function Home() {
                         Welcome to DemocracyHelper
                     </Typography>
                 </Box>
-                <Stack>
-                    <Typography sx={{ background: 'yellow' }}>Active Id: {partialState.activeElementId} and type: {partialState.activeElementType}</Typography>
-                </Stack>
 
-                
-                
                 <Stack
                     divider={<Divider orientation="vertical" />}
                     spacing={2}
@@ -126,14 +123,13 @@ export default function Home() {
                         </Box>
 
                         <PropositionOverview
-                            propositions={propositions}
-                            opinions={opinions}
+                            propositionsWithOpinions={propositionsWithOpinions}
                             showDetails={partialState.showDetails}
                             aria-label='proposition-display'
                         />
                     </Context.Provider>
-                </Stack> 
-                
+                </Stack>
+
             </Box>
         </main>
 

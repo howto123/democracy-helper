@@ -2,14 +2,15 @@ import Opinion from "@/types/opinion"
 import { OpinionSum, OpinionType } from "@/types/opinionType"
 import Proposition from "@/types/proposition"
 import PropositionWithOpinions from "@/types/propositionWithOpinions"
+import assert from "assert"
+
 
 
 export default function getPropositionsWithOpinions(
     propositions: Proposition[],
     opinions: Opinion[]
 ): PropositionWithOpinions[] {
-    
-
+    assert(!!propositions && !!opinions)
     return propositions.map(p => {
 
         const matchingOpinions = opinions?.filter(
@@ -38,7 +39,7 @@ function getOpinionSum(opinions: Opinion[]): OpinionSum {
     }
 
 
-    opinions?.forEach( o => {
+    opinions.forEach( o => {
         switch(o.type) {
             case OpinionType.HugeFan: {
                 toBeReturned.hugeFan++;
