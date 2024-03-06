@@ -8,9 +8,11 @@ export default function getPropositionsWithOpinions(
     propositions: Proposition[],
     opinions: Opinion[]
 ): PropositionWithOpinions[] {
+    
+
     return propositions.map(p => {
 
-        const matchingOpinions = opinions.filter(
+        const matchingOpinions = opinions?.filter(
             o => p.id === o.propositionId
         )
 
@@ -36,7 +38,7 @@ function getOpinionSum(opinions: Opinion[]): OpinionSum {
     }
 
 
-    opinions.forEach( o => {
+    opinions?.forEach( o => {
         switch(o.type) {
             case OpinionType.HugeFan: {
                 toBeReturned.hugeFan++;

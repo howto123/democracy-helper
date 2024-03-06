@@ -1,4 +1,4 @@
-[
+export const propositionsSample = [
     {
         "id": "1",
         "text": "I suggest to make an app that makes democratic group decisions easier."

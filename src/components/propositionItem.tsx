@@ -5,8 +5,8 @@ import OpinionItem from "./opinionItem"
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import { grid12SlotsStyles, propositionBorderStyles } from "@/styles/propositionItemStyles";
 import { MouseEventHandler, useContext, useState } from "react";
-import AddOpinionDialog from "./addOpinionDialog";
 import Context from "@/app/context";
+import AddOpinionDialog from "./addOpinionDialog";
 
 
 
@@ -91,7 +91,7 @@ export default function PropositionItem(
                     gridTemplateColumns: 'repeat(4, 1fr)',
                     gridTemplateRows: 'auto',
                 }}>
-                    {proposition.opinions.map(o =>
+                    {proposition.opinions?.map(o =>
                         <OpinionItem key={o.id} opinion={o}></OpinionItem>
                     )}
                 </Box>

@@ -1,4 +1,4 @@
-[
+export const opinionsSample = [
     {
         "id": "1",
         "type": "I'm a huge fan!",

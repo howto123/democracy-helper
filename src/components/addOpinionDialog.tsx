@@ -11,11 +11,13 @@ import Opinion from '@/types/opinion';
 import { Identity } from '@/types/identity';
 import { OpinionType } from '@/types/opinionType';
 import getEnumKeys from '@/helperFunctions/getEnumKeys';
+import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from '@/helperFunctions/dialogHelpers';
 
 export default function AddOpinionDialog({ propositionId }: { propositionId: Identity }) {
     const [open, openSet] = React.useState(false);
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (e: React.MouseEvent<HTMLElement>) => {
+        e.stopPropagation();
         openSet(true);
     };
 
@@ -29,23 +31,23 @@ export default function AddOpinionDialog({ propositionId }: { propositionId: Ide
                 <PanToolOutlinedIcon />
             </Button>
             <Dialog
+                onClick={disablePropagationHandler}
                 open={open}
                 onClose={handleClose}
                 PaperProps={{
                     component: 'form',
                     onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        const formData = new FormData(event.currentTarget);
-                        const formJson = Object.fromEntries((formData as any).entries());
+                        const formObject = getFormObject_PreventDefault_StopPropagation(event)
+
                         let newOpinion: Opinion = {
                             id: '',
-                            text: formJson.text,
-                            type: formJson.type,
+                            text: formObject.text,
+                            type: formObject.type,
                             propositionId: propositionId,
                         }
-                        newOpinion = await createOpinion(newOpinion);
-                        console.log(newOpinion)
+                        newOpinion = await createOpinion(newOpinion, formObject.password);
+                        console.log(newOpinion);
+
                         handleClose();
                     },
                 }}
@@ -74,6 +76,15 @@ export default function AddOpinionDialog({ propositionId }: { propositionId: Ide
                                 <MenuItem key={index} value={OpinionType[key]}>{key}</MenuItem>
                             )}
                         </Select>
+                    </FormControl>
+                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="opinion-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="opinion-password"
+                            type="password"
+                            label="Password"
+                            name="password"
+                        />
                     </FormControl>
                 </DialogContent>
                 <DialogActions>

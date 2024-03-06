@@ -8,11 +8,14 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import Proposition from '@/types/proposition';
 import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
 import { createProposition } from '@/helperFunctions/nextApiCalls';
+import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from '@/helperFunctions/dialogHelpers';
+
 
 export default function AddPropositionDialog() {
     const [open, openSet] = React.useState(false);
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (e: React.MouseEvent<HTMLElement>) => {
+        e.stopPropagation();
         openSet(true);
     };
 
@@ -26,21 +29,21 @@ export default function AddPropositionDialog() {
                 <AddCircleOutlineOutlinedIcon />
             </Button>
             <Dialog
+                onClick={disablePropagationHandler}
                 open={open}
                 onClose={handleClose}
                 PaperProps={{
                     component: 'form',
                     onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        const formData = new FormData(event.currentTarget);
-                        const formJson = Object.fromEntries((formData as any).entries());
+                        const formObject = getFormObject_PreventDefault_StopPropagation(event);
+
                         let newProposition: Proposition = {
                             id: '',
-                            text: formJson.text,
-                        }
-                        newProposition = await createProposition(newProposition);
-                        console.log(newProposition)
+                            text: formObject.text,
+                        };
+                        newProposition = await createProposition(newProposition, formObject.password);
+                        console.log(newProposition);
+
                         handleClose();
                     },
                 }}
@@ -53,8 +56,15 @@ export default function AddPropositionDialog() {
                             id="proposition-text"
                             type="text"
                             label="New proposition"
-                            name="text"
-                        />
+                            name="text" />
+                    </FormControl>
+                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                        <InputLabel htmlFor="proposition-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="proposition-password"
+                            type="password"
+                            label="Password"
+                            name="password" />
                     </FormControl>
                 </DialogContent>
                 <DialogActions>

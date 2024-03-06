@@ -33,7 +33,7 @@ export default function PropositionOverview(
             aria-label="proposition-list"
         >
             <PropositionLabel showDetails={showDetails} />
-            {propositionsWithOpinions.map(p => (
+            {(propositionsWithOpinions.length>0) && propositionsWithOpinions.map(p => (
                 <PropositionItem key={p.id} proposition={p} showDetails={showDetails} />
             ))}
         </Box>
