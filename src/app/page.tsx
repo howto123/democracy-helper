@@ -1,21 +1,16 @@
 "use client"
 
-import { Box, Button, ButtonGroup, Divider, FormControlLabel, Paper, Stack, Switch, Typography } from "@mui/material"
+import { Box, Button, ButtonGroup, Divider, Stack, Typography } from "@mui/material"
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Opinion from "@/types/opinion";
-import Proposition from "@/types/proposition";
 import PropositionOverview from "@/components/propositionOverview";
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import { Identity } from "@/types/identity";
 import Context from "./context";
 import ActiveElement from "@/types/activeElement";
 import DeleteItemDialog from "@/components/deleteItemDialog";
 import AddPropositionDialog from "@/components/addPropositionDialog";
-import { opinionsSample } from "@/data/opinionsSample";
-import { propositionsSample } from "@/data/propositionsSample";
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import getPropositionsWithOpinions from "@/helperFunctions/getPropositionsWithOpinions";
-import assert from "assert";
 import { getPropositions, getOpinions } from "@/helperFunctions/nextApiCalls";
 
 
