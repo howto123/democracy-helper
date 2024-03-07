@@ -1,22 +1,22 @@
 "use client"
 
-import { Box, Button, ButtonGroup, Divider, FormControlLabel, Paper, Stack, Switch, Typography } from '@mui/material'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import Opinion from '@/types/opinion';
-import Proposition from '@/types/proposition';
-import PropositionOverview from '@/components/propositionOverview';
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
-import { Identity } from '@/types/identity';
-import Context from './context';
-import ActiveElement from '@/types/activeElement';
-import DeleteItemDialog from '@/components/deleteItemDialog';
-import AddPropositionDialog from '@/components/addPropositionDialog';
-import { opinionsSample } from '@/data/opinionsSample';
-import { propositionsSample } from '@/data/propositionsSample';
-import PropositionWithOpinions from '@/types/propositionWithOpinions';
-import getPropositionsWithOpinions from '@/helperFunctions/getPropositionsWithOpinions';
-import assert from 'assert';
-import { getPropositions, getOpinions } from '@/helperFunctions/nextApiCalls';
+import { Box, Button, ButtonGroup, Divider, FormControlLabel, Paper, Stack, Switch, Typography } from "@mui/material"
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import Opinion from "@/types/opinion";
+import Proposition from "@/types/proposition";
+import PropositionOverview from "@/components/propositionOverview";
+import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { Identity } from "@/types/identity";
+import Context from "./context";
+import ActiveElement from "@/types/activeElement";
+import DeleteItemDialog from "@/components/deleteItemDialog";
+import AddPropositionDialog from "@/components/addPropositionDialog";
+import { opinionsSample } from "@/data/opinionsSample";
+import { propositionsSample } from "@/data/propositionsSample";
+import PropositionWithOpinions from "@/types/propositionWithOpinions";
+import getPropositionsWithOpinions from "@/helperFunctions/getPropositionsWithOpinions";
+import assert from "assert";
+import { getPropositions, getOpinions } from "@/helperFunctions/nextApiCalls";
 
 
 
@@ -61,7 +61,7 @@ export default function Home() {
         partialStateSet({
             ...partialState,
             activeElementId: id,
-            activeElementType: 'proposition'
+            activeElementType: "proposition"
         })
     }
 
@@ -69,7 +69,7 @@ export default function Home() {
         partialStateSet({
             ...partialState,
             activeElementId: id,
-            activeElementType: 'opinion'
+            activeElementType: "opinion"
         })
     }
 
@@ -82,11 +82,11 @@ export default function Home() {
                     activeElementType: undefined
                 })}
                 sx={{
-                    height: '100vh'
+                    height: "100vh"
                 }}
             >
                 <Box m='5pt'>
-                    <Typography variant="h3" component="h1" textAlign={'center'} gutterBottom>
+                    <Typography variant="h3" component="h1" textAlign={"center"} gutterBottom>
                         Welcome to DemocracyHelper
                     </Typography>
                 </Box>
@@ -116,8 +116,8 @@ export default function Home() {
                                     <AddPropositionDialog />
                                     <DeleteItemDialog buttonDisabled={!partialState.activeElementId} />
                                 </ButtonGroup>
-                                <Button onClick={handleDetailsClick} variant='outlined' sx={{ width: '120pt' }}>
-                                    {partialState.showDetails ? 'hide details' : 'show details'}
+                                <Button onClick={handleDetailsClick} variant='outlined' sx={{ width: "120pt" }}>
+                                    {partialState.showDetails ? "hide details" : "show details"}
                                 </Button>
                             </Stack>
                         </Box>

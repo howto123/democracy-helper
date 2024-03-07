@@ -27,14 +27,14 @@ export default function PropositionItem(
         showsOpinionsSet(o => !o)
         setPropositionToActiveElement(proposition.id)
     }
-    const isActiveElement = () => proposition.id === activeElementId && activeElementType === 'proposition'
+    const isActiveElement = () => proposition.id === activeElementId && activeElementType === "proposition"
     
 
     return <>
         <Box
             sx={{ ...propositionBorderStyles, ...grid12SlotsStyles }}
             onClick={clickEventHandler}
-            className={isActiveElement() ? 'active-element' : 'passive-element'}
+            className={isActiveElement() ? "active-element" : "passive-element"}
         >
             <Box sx={{
                 gridColumnStart: 1,
@@ -48,10 +48,10 @@ export default function PropositionItem(
                 gridColumnEnd: 11,
             }}>
                 {showDetails ? <Box sx={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around'
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-around"
                 }}>
                     <Box>
                         {proposition.opinionSum.hugeFan}
@@ -77,8 +77,8 @@ export default function PropositionItem(
             <Box sx={{
                 gridColumnStart: -2,
                 gridColumnEnd: -1,
-                display: 'flex',
-                justifyContent: 'center',
+                display: "flex",
+                justifyContent: "center",
             }}>
                 <AddOpinionDialog propositionId={proposition.id} />
             </Box>
@@ -87,9 +87,9 @@ export default function PropositionItem(
                 <Box onClick={ e => e.stopPropagation() } sx={{
                     gridColumnStart: 1,
                     gridColumnEnd: -1,
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(4, 1fr)',
-                    gridTemplateRows: 'auto',
+                    display: "grid",
+                    gridTemplateColumns: "repeat(4, 1fr)",
+                    gridTemplateRows: "auto",
                 }}>
                     {proposition.opinions?.map(o =>
                         <OpinionItem key={o.id} opinion={o}></OpinionItem>

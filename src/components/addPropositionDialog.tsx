@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import Proposition from '@/types/proposition';
-import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
-import { createProposition } from '@/helperFunctions/nextApiCalls';
-import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from '@/helperFunctions/dialogHelpers';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import Proposition from "@/types/proposition";
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import { createProposition } from "@/helperFunctions/nextApiCalls";
+import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from "@/helperFunctions/dialogHelpers";
 
 
 export default function AddPropositionDialog() {
@@ -33,12 +33,12 @@ export default function AddPropositionDialog() {
                 open={open}
                 onClose={handleClose}
                 PaperProps={{
-                    component: 'form',
+                    component: "form",
                     onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
                         const formObject = getFormObject_PreventDefault_StopPropagation(event);
 
                         let newProposition: Proposition = {
-                            id: '',
+                            id: "",
                             text: formObject.text,
                         };
                         newProposition = await createProposition(newProposition, formObject.password);
@@ -50,7 +50,7 @@ export default function AddPropositionDialog() {
             >
                 <DialogTitle>Add proposition</DialogTitle>
                 <DialogContent>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                    <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                         <InputLabel htmlFor="proposition-text">New proposition</InputLabel>
                         <OutlinedInput
                             id="proposition-text"
@@ -58,7 +58,7 @@ export default function AddPropositionDialog() {
                             label="New proposition"
                             name="text" />
                     </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                    <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                         <InputLabel htmlFor="proposition-password">Password</InputLabel>
                         <OutlinedInput
                             id="proposition-password"

@@ -3,7 +3,7 @@
 import Proposition from "@/types/proposition"
 import { TableRow, TableCell, Button, Typography, Box, Stack } from "@mui/material"
 import OpinionRow from "./opinionItem"
-import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
+import PanToolOutlinedIcon from "@mui/icons-material/PanToolOutlined";
 import PropositionWithOpinions from "@/types/propositionWithOpinions";
 import { grid12SlotsStyles, propositionBorderNoneStyles } from "@/styles/propositionItemStyles";
 import { OpinionType } from "@/types/opinionType";
@@ -23,9 +23,9 @@ export default function PropositionItem({
             <Box sx={{
                 gridColumnStart: 1,
                 gridColumnEnd: 7,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'end'
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "end"
             }}>
                 <Typography display='inline'>Proposition</Typography>
             </Box>
@@ -35,12 +35,12 @@ export default function PropositionItem({
                 gridColumnEnd: 11,
             }}>
                 {showDetails ? <Box sx={{
-                    writingMode: 'tb-rl',
-                    transform: 'rotate(-180deg)',
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around'
+                    writingMode: "tb-rl",
+                    transform: "rotate(-180deg)",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around"
                 }}>
                     <Box>
                         {OpinionType.HugeFan.toString()}

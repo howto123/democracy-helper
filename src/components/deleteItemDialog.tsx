@@ -1,20 +1,20 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import Proposition from '@/types/proposition';
-import { FormControl, InputLabel, OutlinedInput } from '@mui/material';
-import { createProposition, deleteOpinion, deleteProposition } from '@/helperFunctions/nextApiCalls';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import Proposition from "@/types/proposition";
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import { createProposition, deleteOpinion, deleteProposition } from "@/helperFunctions/nextApiCalls";
 
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { useContext, useState } from 'react';
-import Context from '@/app/context';
-import password from '@/types/password';
-import assert from 'assert';
-import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from '@/helperFunctions/dialogHelpers';
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { useContext, useState } from "react";
+import Context from "@/app/context";
+import password from "@/types/password";
+import assert from "assert";
+import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from "@/helperFunctions/dialogHelpers";
 
 export default function DeleteItemDialog( {buttonDisabled}:{buttonDisabled:boolean} ) {
     const [open, openSet] = useState(false);
@@ -40,7 +40,7 @@ export default function DeleteItemDialog( {buttonDisabled}:{buttonDisabled:boole
                 open={open}
                 onClose={handleClose}
                 PaperProps={{
-                    component: 'form',
+                    component: "form",
                     onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
                         const formObject = getFormObject_PreventDefault_StopPropagation(event);
 
@@ -48,11 +48,11 @@ export default function DeleteItemDialog( {buttonDisabled}:{buttonDisabled:boole
                         assert(activeElementId!==undefined);
 
                         switch (activeElementType) {
-                            case 'proposition': {
+                            case "proposition": {
                                 deleteProposition(activeElementId, password);
                                 break;
                             }
-                            case 'opinion': {
+                            case "opinion": {
                                 deleteOpinion(activeElementId, password);
                                 break;
                             }
@@ -68,7 +68,7 @@ export default function DeleteItemDialog( {buttonDisabled}:{buttonDisabled:boole
                 <DialogTitle>Delete Item</DialogTitle>
                 <DialogContent>
                      Do you want to permanently delete the highlighted item?
-                     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                     <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                         <InputLabel htmlFor="delete-password">Password for that item</InputLabel>
                         <OutlinedInput
                             id="delete-password"

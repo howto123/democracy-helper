@@ -1,17 +1,17 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
-import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from '@mui/material';
-import { createOpinion } from '@/helperFunctions/nextApiCalls';
-import Opinion from '@/types/opinion';
-import { Identity } from '@/types/identity';
-import { OpinionType } from '@/types/opinionType';
-import getEnumKeys from '@/helperFunctions/getEnumKeys';
-import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from '@/helperFunctions/dialogHelpers';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import PanToolOutlinedIcon from "@mui/icons-material/PanToolOutlined";
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
+import { createOpinion } from "@/helperFunctions/nextApiCalls";
+import Opinion from "@/types/opinion";
+import { Identity } from "@/types/identity";
+import { OpinionType } from "@/types/opinionType";
+import getEnumKeys from "@/helperFunctions/getEnumKeys";
+import { disablePropagationHandler, getFormObject_PreventDefault_StopPropagation } from "@/helperFunctions/dialogHelpers";
 
 export default function AddOpinionDialog({ propositionId }: { propositionId: Identity }) {
     const [open, openSet] = React.useState(false);
@@ -35,12 +35,12 @@ export default function AddOpinionDialog({ propositionId }: { propositionId: Ide
                 open={open}
                 onClose={handleClose}
                 PaperProps={{
-                    component: 'form',
+                    component: "form",
                     onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
                         const formObject = getFormObject_PreventDefault_StopPropagation(event)
 
                         let newOpinion: Opinion = {
-                            id: '',
+                            id: "",
                             text: formObject.text,
                             type: formObject.type,
                             propositionId: propositionId,
@@ -54,7 +54,7 @@ export default function AddOpinionDialog({ propositionId }: { propositionId: Ide
             >
                 <DialogTitle>Add proposition</DialogTitle>
                 <DialogContent>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                    <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                         <InputLabel htmlFor="opinion-text">New opinion</InputLabel>
                         <OutlinedInput
                             id="opinion-text"
@@ -63,7 +63,7 @@ export default function AddOpinionDialog({ propositionId }: { propositionId: Ide
                             name="text"
                         />
                     </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                    <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                         <InputLabel htmlFor="opinion-type">And its type</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -77,7 +77,7 @@ export default function AddOpinionDialog({ propositionId }: { propositionId: Ide
                             )}
                         </Select>
                     </FormControl>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                    <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                         <InputLabel htmlFor="opinion-password">Password</InputLabel>
                         <OutlinedInput
                             id="opinion-password"

@@ -1,5 +1,5 @@
 
 
-type ActiveElement = 'proposition' | 'opinion' | undefined;
+type ActiveElement = "proposition" | "opinion" | undefined;
 
 export default ActiveElement;
